@@ -27,8 +27,6 @@ setwd("~/GitHub/citybike")
 file_all = read.csv('../Data/citibike_all.csv', stringsAsFactors = F)
 file_all = file_all[, -1]
 
-file_all$FileYear = substr(file_all$FileDate,1,4)
-file_all$FileMonth = substr(file_all$FileDate,5,6)
 file_all$Bike.ID = as.character(file_all$Bike.ID)
 file_all$Start.Station.ID = as.character(file_all$Start.Station.ID)
 file_all$End.Station.ID = as.character(file_all$End.Station.ID)
@@ -38,9 +36,14 @@ file_all$FileDate = as.factor(file_all$FileDate)
 tail(file_all)
 glimpse(file_all)
 
-write.csv(file_all, '../Data/citibike_all.csv')
+#write.csv(file_all, '../Data/citibike_all.csv')
+save(file_all, file= '../Data/citibike_all.Rda')
 
-# load file
+load('citibike_all.Rda')
+glimpse(file_all)
+
+
+load file
 library(data.table)
 setwd("~/GitHub/citybike")
 citibike <- fread(file = "../Data/citibike_all.csv", header = T)
